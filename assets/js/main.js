@@ -35,10 +35,12 @@
     });
   }
 
-  // Animated count-up for stat numbers, once each becomes visible
+  // Animated count-up for stat numbers, once the stats band becomes visible
   var counters = document.querySelectorAll('.stat-count');
+  var statsBand = document.querySelector('.stats-band');
   if (counters.length) {
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var triggered = false;
 
     var runCount = function (el) {
       var target = parseInt(el.getAttribute('data-count-to'), 10) || 0;
@@ -58,18 +60,27 @@
       requestAnimationFrame(step);
     };
 
-    if ('IntersectionObserver' in window) {
+    var startAll = function () {
+      if (triggered) return;
+      triggered = true;
+      counters.forEach(runCount);
+    };
+
+    if ('IntersectionObserver' in window && statsBand) {
       var observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            runCount(entry.target);
-            observer.unobserve(entry.target);
+            startAll();
+            observer.disconnect();
           }
         });
-      }, { threshold: 0.4 });
-      counters.forEach(function (el) { observer.observe(el); });
+      }, { threshold: 0.1 });
+      observer.observe(statsBand);
     } else {
-      counters.forEach(runCount);
+      startAll();
     }
+
+    // Safety net: if the observer never fires for any reason, start anyway.
+    setTimeout(startAll, 2500);
   }
 })();
