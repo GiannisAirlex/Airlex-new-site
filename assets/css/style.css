@@ -180,6 +180,24 @@ button{font-family:inherit;}
     radial-gradient(700px 500px at 10% 110%, rgba(198,208,224,.16), transparent 60%),
     linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 55%, var(--navy-3) 100%);
 }
+
+/* Airflow lines — subtle looping wave animation evoking moving air */
+.hero-airflow{ position:absolute; inset:0; overflow:hidden; pointer-events:none; }
+.hero-airflow svg{ position:absolute; left:0; width:200%; height:auto; }
+.hero-airflow .wave-a{ top:18%; opacity:.22; animation:airflow-scroll 22s linear infinite; }
+.hero-airflow .wave-b{ top:46%; opacity:.15; animation:airflow-scroll-rev 30s linear infinite; }
+.hero-airflow .wave-c{ top:74%; opacity:.12; animation:airflow-scroll 26s linear infinite; }
+
+@keyframes airflow-scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+@keyframes airflow-scroll-rev{ from{ transform:translateX(-50%); } to{ transform:translateX(0); } }
+
+@media (prefers-reduced-motion: reduce){
+  .hero-airflow .wave-a, .hero-airflow .wave-b, .hero-airflow .wave-c{ animation:none; }
+}
+
+@media (max-width:640px){
+  .hero-airflow{ opacity:.7; }
+}
 .hero-inner{
   position:relative; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:center;
   padding:100px 24px 90px;
@@ -201,8 +219,8 @@ button{font-family:inherit;}
 .hero-card .mega-icon{ color:var(--blue); }
 .hero-card p{ font-weight:700; font-size:.95rem; }
 .hero-card.card-2 .mega-icon{ color:var(--orange); }
-.hero-card.card-3 .mega-icon{ color:var(--orange); }
-.hero-card.card-4 .mega-icon{ color:var(--blue); }
+.hero-card.card-4 .mega-icon{ color:var(--orange); }
+.hero-card.card-6 .mega-icon{ color:var(--orange); }
 
 /* ============================================================
    PAGE HERO (internal pages)
@@ -268,6 +286,21 @@ button{font-family:inherit;}
 .series-card h3{ font-size:1.1rem; }
 .series-card p{ color:var(--ink-soft); font-size:.9rem; }
 .series-card .series-range{ font-size:.85rem; font-weight:700; color:var(--navy); margin-top:auto; }
+
+.product-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+.product-card{
+  background:var(--bg-soft); border:1px solid var(--line); border-radius:var(--radius);
+  padding:24px; display:flex; flex-direction:column; gap:12px; align-items:flex-start;
+}
+.product-card .series-icon{
+  width:44px; height:44px; border-radius:12px; background:var(--navy); color:#fff;
+  display:flex; align-items:center; justify-content:center;
+}
+.product-card h3{ font-size:.98rem; line-height:1.35; }
+.product-card .btn{ margin-top:auto; align-self:stretch; text-align:center; }
+
+@media (max-width:1080px){ .product-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:640px){ .product-grid{ grid-template-columns:1fr; } }
 
 /* Series detail page */
 .series-intro{ padding:88px 0 64px; }
@@ -345,8 +378,26 @@ button{font-family:inherit;}
 .form-field input:focus, .form-field textarea:focus{ outline:none; border-color:var(--blue); }
 .contact-form .btn{ width:100%; margin-top:6px; }
 
-.map-embed{ margin-top:56px; border-radius:24px; overflow:hidden; border:1px solid var(--line); aspect-ratio:21/7; }
-.map-embed iframe{ width:100%; height:100%; border:0; display:block; }
+.map-visual{
+  margin-top:56px; border-radius:24px; overflow:hidden; border:1px solid var(--line);
+  aspect-ratio:21/7; position:relative;
+  background-color:#E7ECF3;
+  background-image:
+    linear-gradient(rgba(74,115,184,.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74,115,184,.16) 1px, transparent 1px),
+    linear-gradient(rgba(74,115,184,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74,115,184,.08) 1px, transparent 1px);
+  background-size:120px 120px, 120px 120px, 24px 24px, 24px 24px;
+  display:flex; align-items:center; justify-content:center;
+}
+.map-visual::before{
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(circle at 50% 55%, transparent 0%, transparent 30%, #E7ECF3 78%);
+}
+.map-pin{ position:relative; display:flex; flex-direction:column; align-items:center; gap:14px; text-align:center; }
+.map-pin svg{ color:var(--navy); filter:drop-shadow(0 8px 14px rgba(22,38,76,.35)); }
+.map-pin .map-pin-address{ font-weight:700; color:var(--navy); font-size:.95rem; }
+.map-pin .btn{ margin-top:4px; }
 
 /* ============================================================
    NEWS LIST PAGE
@@ -370,6 +421,38 @@ button{font-family:inherit;}
 /* ============================================================
    WHY
    ============================================================ */
+/* ============================================================
+   STATS BAND
+   ============================================================ */
+.stats-band{
+  position:relative; overflow:hidden; padding:64px 0;
+  background:linear-gradient(120deg, var(--navy), var(--navy-3));
+}
+.stats-band::before{
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(700px 400px at 85% 0%, rgba(127,166,230,.25), transparent 60%);
+}
+.stats-grid{
+  position:relative; display:grid; grid-template-columns:repeat(3,1fr); gap:0;
+}
+.stat-item{
+  text-align:center; padding:0 24px;
+  border-left:1px solid rgba(255,255,255,.15);
+}
+.stat-item:first-child{ border-left:0; }
+.stat-item .stat-num{
+  display:block; font-size:clamp(2.4rem,5vw,3.4rem); font-weight:800; color:#fff;
+  letter-spacing:-.02em; font-variant-numeric:tabular-nums;
+}
+.stat-item .stat-num .stat-suffix{ font-size:.55em; font-weight:700; color:var(--blue); }
+.stat-item .stat-caption{ color:rgba(255,255,255,.68); font-weight:600; font-size:.92rem; margin-top:8px; }
+
+@media (max-width:640px){
+  .stats-grid{ grid-template-columns:1fr; gap:28px; }
+  .stat-item{ border-left:0; border-top:1px solid rgba(255,255,255,.15); padding:24px 0 0; }
+  .stat-item:first-child{ border-top:0; padding-top:0; }
+}
+
 .why{ padding:96px 0; background-color:var(--bg-soft); background-image:radial-gradient(circle at 1px 1px, rgba(74,115,184,.16) 1px, transparent 0); background-size:26px 26px; }
 .why-inner{ display:grid; grid-template-columns:1.1fr .9fr; gap:64px; align-items:center; }
 .why-copy p{ color:var(--ink-soft); margin:16px 0 28px; font-size:1.02rem; max-width:540px; }
