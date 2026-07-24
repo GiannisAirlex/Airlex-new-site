@@ -535,6 +535,12 @@ button{font-family:inherit;}
 }
 .footer-logo{ display:flex; align-items:center; gap:12px; }
 .footer-brand p{ margin-top:16px; font-size:.9rem; line-height:1.7; color:rgba(255,255,255,.6); max-width:320px; }
+.footer-socials{ display:flex; gap:10px; margin-top:20px; }
+.footer-socials a{
+  width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,.2);
+  display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,.7); transition:.15s;
+}
+.footer-socials a:hover{ background:rgba(255,255,255,.1); color:#fff; border-color:rgba(255,255,255,.4); }
 .footer-col h4{ color:#fff; font-size:.92rem; margin-bottom:18px; text-transform:uppercase; letter-spacing:.06em; }
 .footer-col ul{ display:flex; flex-direction:column; gap:11px; }
 .footer-col a{ font-size:.9rem; color:rgba(255,255,255,.68); }
