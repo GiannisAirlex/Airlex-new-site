@@ -1,607 +1,201 @@
-/* ============================================================
-   Airlex Hellas — Prototype Stylesheet
-   ============================================================ */
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Επικοινωνία | Airlex Hellas</title>
+<meta name="description" content="Επικοινωνήστε με την Airlex Hellas. Ανδρέα Παπανδρέου 108, Γλυφάδα. Τηλ. 210 9650850.">
+<link rel="icon" href="assets/img/logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
 
-:root{
-  --navy: #16264C;
-  --navy-2: #1C2F60;
-  --navy-3: #243B76;
-  --blue: #4A73B8;
-  --blue-dark: #2F5590;
-  --orange: #6E9BE0;
-  --orange-dark: #4F7DC7;
-  --silver: #C6D0E0;
-  --ink: #16202E;
-  --ink-soft: #4B5768;
-  --line: #E4E9F0;
-  --bg: #FFFFFF;
-  --bg-soft: #F5F8FB;
-  --radius: 14px;
-  --radius-sm: 8px;
-  --shadow-sm: 0 1px 2px rgba(16,35,63,.06), 0 1px 1px rgba(16,35,63,.04);
-  --shadow-md: 0 8px 24px rgba(16,35,63,.10);
-  --shadow-lg: 0 24px 60px rgba(10,26,48,.16);
-  --container: 1220px;
-  --ff: 'Plus Jakarta Sans', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-}
+<a class="skip-link" href="#main">Μετάβαση στο περιεχόμενο</a>
 
-*,*::before,*::after{box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{
-  margin:0;
-  font-family:var(--ff);
-  color:var(--ink);
-  background-color:var(--bg);
-  background-image:radial-gradient(circle at 1px 1px, rgba(74,115,184,.14) 1px, transparent 0);
-  background-size:26px 26px;
-  -webkit-font-smoothing:antialiased;
-  line-height:1.55;
-}
-img{max-width:100%;display:block;}
-a{color:inherit;text-decoration:none;}
-ul{list-style:none;margin:0;padding:0;}
-h1,h2,h3,h4{margin:0;line-height:1.15;font-weight:800;letter-spacing:-0.02em;}
-p{margin:0;}
-button{font-family:inherit;}
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a href="index.html" class="logo" aria-label="Airlex Hellas - Αρχική">
+      <span class="logo-mark" aria-hidden="true">
+        <img src="assets/img/logo.png" alt="" width="34" height="34">
+      </span>
+      <span class="logo-text">AIRLEX <em>HELLAS</em></span>
+    </a>
 
-.container{
-  max-width:var(--container);
-  margin:0 auto;
-  padding:0 24px;
-}
+    <nav class="main-nav" id="mainNav" aria-label="Κύριο μενού">
+      <ul>
+        <li><a href="index.html">Αρχική</a></li>
+        <li class="has-mega">
+          <a href="products.html">Προϊόντα</a>
+          <div class="mega-menu">
+            <a href="products-klimatismos.html"><span class="mega-icon" data-icon="ac"></span>Κλιματισμός</a>
+            <a href="products.html#thermansi"><span class="mega-icon" data-icon="heat"></span>Θέρμανση / Αντλίες Θερμότητας</a>
+            <a href="products.html#aerismos"><span class="mega-icon" data-icon="fan"></span>Αερισμός</a>
+            <a href="products.html#iliaka"><span class="mega-icon" data-icon="solar"></span>Ηλιακά / Boilers</a>
+            <a href="products-pyroprostasia.html"><span class="mega-icon" data-icon="fire"></span>Παθητική Πυροπροστασία</a>
+            <a href="products.html#koupoles"><span class="mega-icon" data-icon="dome"></span>Κούπολες</a>
+            <a href="products.html#ergα-upodomon"><span class="mega-icon" data-icon="tunnel"></span>Έργα Υποδομών</a>
+            <a href="products.html#antallaktika"><span class="mega-icon" data-icon="parts"></span>Ανταλλακτικά</a>
+          </div>
+        </li>
+        <li><a href="about.html">Η Εταιρεία</a></li>
+        <li><a href="news.html">Νέα</a></li>
+        <li><a href="contact.html" class="active">Επικοινωνία</a></li>
+      </ul>
+    </nav>
 
-.skip-link{
-  position:absolute; left:-999px; top:0;
-  background:var(--navy); color:#fff; padding:10px 16px; z-index:200; border-radius:0 0 8px 0;
-}
-.skip-link:focus{ left:0; }
+    <div class="header-actions">
+      <a href="tel:+302109650850" class="header-phone">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>210 9650850</span>
+      </a>
+      <a href="contact.html" class="btn btn-primary btn-sm">Ζητήστε Προσφορά</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Άνοιγμα μενού" aria-expanded="false" aria-controls="mainNav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
 
-/* ---------- Buttons ---------- */
-.btn{
-  display:inline-flex; align-items:center; justify-content:center; gap:8px;
-  padding:13px 24px; border-radius:999px; font-weight:700; font-size:.95rem;
-  border:1.5px solid transparent; transition:.18s ease; cursor:pointer; white-space:nowrap;
-}
-.btn-lg{ padding:15px 30px; font-size:1rem; }
-.btn-sm{ padding:9px 18px; font-size:.85rem; }
-.btn-primary{ background:var(--orange); color:#fff; box-shadow:0 6px 18px rgba(110,155,224,.35); }
-.btn-primary:hover{ background:var(--orange-dark); transform:translateY(-1px); }
-.btn-outline{ border-color:rgba(10,26,48,.18); color:var(--navy); }
-.btn-outline:hover{ border-color:var(--navy); background:rgba(10,26,48,.04); }
-.btn-ghost{ border-color:rgba(255,255,255,.35); color:#fff; }
-.btn-ghost:hover{ background:rgba(255,255,255,.12); }
+<main id="main">
 
-.eyebrow{
-  text-transform:uppercase; letter-spacing:.12em; font-size:.76rem; font-weight:700;
-  color:var(--blue-dark); margin:0 0 10px;
-}
-.link-arrow{ font-weight:700; color:var(--navy); border-bottom:2px solid var(--orange); padding-bottom:2px; }
-.link-arrow:hover{ color:var(--blue-dark); }
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container">
+      <p class="breadcrumb"><a href="index.html">Αρχική</a> / Επικοινωνία</p>
+      <h1>Επικοινωνήστε μαζί μας</h1>
+      <p class="page-hero-lead">Για προσφορά, τεχνική καθοδήγηση ή οποιαδήποτε ερώτηση σχετικά με τα προϊόντα μας, η ομάδα της Airlex Hellas είναι στη διάθεσή σας.</p>
+    </div>
+  </section>
 
-.section-head{
-  display:flex; align-items:flex-end; justify-content:space-between; gap:24px;
-  margin-bottom:40px; flex-wrap:wrap;
-}
-.section-head h2{ font-size:clamp(1.5rem,2.4vw,2rem); }
+  <!-- CONTACT -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info-card">
+          <h2>Στοιχεία Επικοινωνίας</h2>
+          <p>Επικοινωνήστε τηλεφωνικά ή επισκεφθείτε μας στα γραφεία μας στη Γλυφάδα.</p>
+          <ul class="contact-info-list">
+            <li>
+              <span class="icon-badge">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </span>
+              <div>
+                <strong>Διεύθυνση</strong>
+                <span>Ανδρέα Παπανδρέου 108, Γλυφάδα</span>
+              </div>
+            </li>
+            <li>
+              <span class="icon-badge">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </span>
+              <div>
+                <strong>Τηλέφωνο</strong>
+                <a href="tel:+302109650850">210 9650850</a>
+              </div>
+            </li>
+          </ul>
+          <div class="contact-socials">
+            <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg></a>
+            <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM3.3 8.75h3.6V21H3.3V8.75zM9.4 8.75h3.45v1.68h.05c.48-.9 1.66-1.85 3.42-1.85 3.66 0 4.33 2.4 4.33 5.53V21h-3.6v-5.9c0-1.4-.03-3.2-1.95-3.2-1.96 0-2.26 1.53-2.26 3.1V21H9.4V8.75z"/></svg></a>
+          </div>
+        </div>
 
-/* ============================================================
-   ICONS — CSS mask based line icons (single color, inherits currentColor)
-   ============================================================ */
-.mega-icon{
-  --size:22px;
-  width:var(--size); height:var(--size);
-  display:inline-block; flex-shrink:0;
-  background-color:currentColor;
-  -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
-  -webkit-mask-size:contain; mask-size:contain;
-  -webkit-mask-position:center; mask-position:center;
-}
-.mega-icon.lg{ --size:34px; }
-.mega-icon.xl{ --size:120px; }
+        <form class="contact-form" onsubmit="return false">
+          <h2>Στείλτε μας μήνυμα</h2>
+          <p>Συμπληρώστε τη φόρμα και θα επικοινωνήσουμε μαζί σας το συντομότερο δυνατό.</p>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="fullname">Ονοματεπώνυμο</label>
+              <input type="text" id="fullname" name="fullname" required>
+            </div>
+            <div class="form-field">
+              <label for="phone">Τηλέφωνο</label>
+              <input type="tel" id="phone" name="phone">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field full">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field full">
+              <label for="message">Μήνυμα</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg">Αποστολή Μηνύματος</button>
+        </form>
+      </div>
 
-.mega-icon[data-icon="ac"]{ -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='5' width='20' height='7' rx='2'/%3E%3Cpath d='M6 16v3M10 16v4M14 16v3M18 16v4'/%3E%3C/svg%3E"); mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='5' width='20' height='7' rx='2'/%3E%3Cpath d='M6 16v3M10 16v4M14 16v3M18 16v4'/%3E%3C/svg%3E"); }
+      <div class="map-visual" role="img" aria-label="Χάρτης με τη θέση των γραφείων της Airlex Hellas στη Γλυφάδα">
+        <div class="map-pin">
+          <svg width="46" height="46" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C7.6 2 4 5.6 4 10c0 5.4 6.9 11.1 7.2 11.4.5.4 1.1.4 1.6 0C13.1 21.1 20 15.4 20 10c0-4.4-3.6-8-8-8zm0 10.8c-1.5 0-2.8-1.2-2.8-2.8S10.5 7.2 12 7.2s2.8 1.2 2.8 2.8-1.3 2.8-2.8 2.8z"/></svg>
+          <span class="map-pin-address">Ανδρέα Παπανδρέου 108, Γλυφάδα</span>
+          <a href="https://www.google.com/maps/search/?api=1&query=Androu+Papandreou+108+Glyfada" target="_blank" rel="noopener" class="btn btn-outline btn-sm">Ανοίξτε στο Google Maps</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-.mega-icon[data-icon="heat"]{ -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2c0 4-4 5-4 9a4 4 0 0 0 8 0c0-1.5-1-2.5-1-4 1 .5 2 2 2 4a5 5 0 0 1-10 0c0-5 5-6 5-9z'/%3E%3C/svg%3E"); mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2c0 4-4 5-4 9a4 4 0 0 0 8 0c0-1.5-1-2.5-1-4 1 .5 2 2 2 4a5 5 0 0 1-10 0c0-5 5-6 5-9z'/%3E%3C/svg%3E"); }
+</main>
 
-.mega-icon[data-icon="fan"]{ -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='1.6'/%3E%3Cpath d='M12 10.4c-1-2.6-1-6.4 1.2-7.8 2-1.3 4 .3 3.6 2.6-.3 1.9-2.3 3.6-4.8 5.2zM10.4 12c-2.6 1-6.4 1-7.8-1.2-1.3-2 .3-4 2.6-3.6 1.9.3 3.6 2.3 5.2 4.8zM13.6 12c2.6-1 6.4-1 7.8 1.2 1.3 2-.3 4-2.6 3.6-1.9-.3-3.6-2.3-5.2-4.8zM12 13.6c1 2.6 1 6.4-1.2 7.8-2 1.3-4-.3-3.6-2.6.3-1.9 2.3-3.6 4.8-5.2z'/%3E%3C/svg%3E"); mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='1.6'/%3E%3Cpath d='M12 10.4c-1-2.6-1-6.4 1.2-7.8 2-1.3 4 .3 3.6 2.6-.3 1.9-2.3 3.6-4.8 5.2zM10.4 12c-2.6 1-6.4 1-7.8-1.2-1.3-2 .3-4 2.6-3.6 1.9.3 3.6 2.3 5.2 4.8zM13.6 12c2.6-1 6.4-1 7.8 1.2 1.3 2-.3 4-2.6 3.6-1.9-.3-3.6-2.3-5.2-4.8zM12 13.6c1 2.6 1 6.4-1.2 7.8-2 1.3-4-.3-3.6-2.6.3-1.9 2.3-3.6 4.8-5.2z'/%3E%3C/svg%3E"); }
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="assets/img/logo.png" alt="" width="42" height="42">
+        <span class="logo-text light">AIRLEX <em>HELLAS</em></span>
+      </div>
+      <p>Εμπορική διανομή προϊόντων κλιματισμού, θέρμανσης, αερισμού, ηλιακών συστημάτων, παθητικής πυροπροστασίας, κούπολων και εξοπλισμού έργων υποδομής.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Προϊόντα</h4>
+      <ul>
+        <li><a href="products-klimatismos.html">Κλιματισμός</a></li>
+        <li><a href="products.html#thermansi">Θέρμανση / Αντλίες Θερμότητας</a></li>
+        <li><a href="products.html#aerismos">Αερισμός</a></li>
+        <li><a href="products.html#iliaka">Ηλιακά / Boilers</a></li>
+        <li><a href="products-pyroprostasia.html">Παθητική Πυροπροστασία</a></li>
+        <li><a href="products.html#koupoles">Κούπολες</a></li>
+        <li><a href="products.html#ergα-upodomon">Έργα Υποδομών</a></li>
+        <li><a href="products.html#antallaktika">Ανταλλακτικά</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Εταιρεία</h4>
+      <ul>
+        <li><a href="about.html">Η Εταιρεία</a></li>
+        <li><a href="news.html">Νέα</a></li>
+        <li><a href="contact.html">Επικοινωνία</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Επικοινωνία</h4>
+      <ul class="footer-contact">
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Ανδρέα Παπανδρέου 108, Γλυφάδα</span>
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <a href="tel:+302109650850">210 9650850</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>© 2026 Airlex Hellas ΑΕΤΒΕ. Με επιφύλαξη παντός δικαιώματος.</p>
+    </div>
+  </div>
+</footer>
 
-.mega-icon[data-icon="solar"]{ -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1'/%3E%3C/svg%3E"); mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1'/%3E%3C/svg%3E"); }
-
-.mega-icon[data-icon="fire"]{ -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2 L4 8 v13 h16 V8 z'/%3E%3Cpath d='M9 21v-6a3 3 0 0 1 6 0v6'/%3E%3C/svg%3E"); mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2 L4 8 v13 h16 V8 z'/%3E%3Cpath d='M9 21v-6a3 3 0 0 1 6 0v6'/%3E%3C/svg%3E"); }
-
-.mega-icon[data-icon="dome"]{ -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 20h18'/%3E%3Cpath d='M4 20V10a8 8 0 0 1 16 0v10'/%3E%3Cpath d='M12 2v8M8 3.5v6.5M16 3.5v6.5'/%3E%3C/svg%3E"); mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 20h18'/%3E%3Cpath d='M4 20V10a8 8 0 0 1 16 0v10'/%3E%3Cpath d='M12 2v8M8 3.5v6.5M16 3.5v6.5'/%3E%3C/svg%3E"); }
-
-.mega-icon[data-icon="tunnel"]{ -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 21V11a10 10 0 0 1 20 0v10'/%3E%3Cpath d='M2 21h4M18 21h4M9 21v-6a3 3 0 0 1 6 0v6'/%3E%3C/svg%3E"); mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 21V11a10 10 0 0 1 20 0v10'/%3E%3Cpath d='M2 21h4M18 21h4M9 21v-6a3 3 0 0 1 6 0v6'/%3E%3C/svg%3E"); }
-
-.mega-icon[data-icon="parts"]{ -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.7 6.3a4 4 0 0 1-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 1 5.4-5.4l-3 3-2-2z'/%3E%3C/svg%3E"); mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.7 6.3a4 4 0 0 1-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 1 5.4-5.4l-3 3-2-2z'/%3E%3C/svg%3E"); }
-
-/* ============================================================
-   HEADER
-   ============================================================ */
-.site-header{
-  position:sticky; top:0; z-index:100;
-  background:rgba(255,255,255,.92);
-  backdrop-filter:saturate(180%) blur(10px);
-  border-bottom:1px solid var(--line);
-}
-.header-inner{
-  display:flex; align-items:center; gap:28px;
-  height:76px;
-}
-.logo{ display:flex; align-items:center; gap:12px; color:var(--navy); margin-right:auto; }
-.logo-mark{ display:flex; filter:drop-shadow(0 2px 6px rgba(22,38,76,.35)); }
-.logo-mark img{ width:40px; height:40px; }
-.footer-logo img{ filter:drop-shadow(0 2px 6px rgba(0,0,0,.35)); }
-.logo-text{ font-size:1.3rem; font-weight:800; letter-spacing:-0.01em; }
-.logo-text em{ font-style:normal; color:var(--blue-dark); }
-.logo-text.light{ color:#fff; }
-.logo-text.light em{ color:var(--blue); }
-
-.main-nav ul{ display:flex; align-items:center; gap:4px; }
-.main-nav a{
-  display:inline-flex; align-items:center; padding:10px 14px; border-radius:999px;
-  font-weight:600; font-size:.95rem; color:var(--ink-soft); transition:.15s;
-}
-.main-nav a:hover, .main-nav a.active{ color:var(--navy); background-color:var(--bg-soft); background-image:radial-gradient(circle at 1px 1px, rgba(74,115,184,.16) 1px, transparent 0); background-size:26px 26px; }
-
-.has-mega{ position:relative; }
-.mega-menu{
-  position:absolute; top:100%; left:50%; transform:translateX(-50%) translateY(8px);
-  background:#fff; border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow-lg);
-  padding:12px; display:grid; grid-template-columns:1fr 1fr; gap:2px;
-  width:520px; opacity:0; visibility:hidden; pointer-events:none; transition:.18s ease;
-}
-.has-mega:hover .mega-menu{ opacity:1; visibility:visible; pointer-events:auto; transform:translateX(-50%) translateY(0); }
-.mega-menu a{ display:flex; align-items:center; gap:10px; padding:11px 12px; border-radius:10px; font-weight:600; font-size:.9rem; color:var(--ink); }
-.mega-menu a:hover{ background:var(--bg-soft); color:var(--blue-dark); }
-.mega-menu .mega-icon{ color:var(--orange); }
-
-.header-actions{ display:flex; align-items:center; gap:14px; }
-.header-phone{ display:flex; align-items:center; gap:7px; font-weight:700; color:var(--navy); font-size:.92rem; }
-.header-phone svg{ color:var(--orange); }
-
-.nav-toggle{
-  display:none; flex-direction:column; justify-content:center; gap:5px;
-  width:40px; height:40px; border:0; background:transparent; cursor:pointer; border-radius:8px;
-}
-.nav-toggle span{ display:block; width:22px; height:2px; background:var(--navy); margin:0 auto; transition:.2s; }
-.nav-toggle.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
-.nav-toggle.open span:nth-child(2){ opacity:0; }
-.nav-toggle.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
-
-/* ============================================================
-   HERO
-   ============================================================ */
-.hero{ position:relative; overflow:hidden; background:var(--navy); color:#fff; }
-.hero-bg{
-  position:absolute; inset:0;
-  background:
-    radial-gradient(900px 500px at 85% -10%, rgba(14,165,233,.35), transparent 60%),
-    radial-gradient(700px 500px at 10% 110%, rgba(198,208,224,.16), transparent 60%),
-    linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 55%, var(--navy-3) 100%);
-}
-
-/* Airflow lines — subtle looping wave animation evoking moving air */
-.hero-airflow{ position:absolute; inset:0; overflow:hidden; pointer-events:none; }
-.hero-airflow svg{ position:absolute; left:0; width:200%; height:auto; }
-.hero-airflow .wave-a{ top:18%; opacity:.22; animation:airflow-scroll 22s linear infinite; }
-.hero-airflow .wave-b{ top:46%; opacity:.15; animation:airflow-scroll-rev 30s linear infinite; }
-.hero-airflow .wave-c{ top:74%; opacity:.12; animation:airflow-scroll 26s linear infinite; }
-
-@keyframes airflow-scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
-@keyframes airflow-scroll-rev{ from{ transform:translateX(-50%); } to{ transform:translateX(0); } }
-
-@media (prefers-reduced-motion: reduce){
-  .hero-airflow .wave-a, .hero-airflow .wave-b, .hero-airflow .wave-c{ animation:none; }
-}
-
-@media (max-width:640px){
-  .hero-airflow{ opacity:.7; }
-}
-.hero-inner{
-  position:relative; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:center;
-  padding:100px 24px 90px;
-}
-.hero .eyebrow{ color:var(--blue); }
-.hero h1{ font-size:clamp(2.1rem,4vw,3.2rem); color:#fff; margin-bottom:20px; }
-.hero-lead{ color:rgba(255,255,255,.78); font-size:1.08rem; max-width:560px; margin-bottom:32px; }
-.hero-actions{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:34px; }
-.hero-trust{ display:flex; gap:22px; flex-wrap:wrap; }
-.hero-trust li{ position:relative; padding-left:20px; color:rgba(255,255,255,.7); font-size:.88rem; font-weight:600; }
-.hero-trust li::before{ content:''; position:absolute; left:0; top:6px; width:10px; height:10px; border-radius:50%; background:var(--blue); }
-
-.hero-visual{ position:relative; display:grid; grid-template-columns:1fr 1fr; grid-auto-rows:1fr; gap:16px; }
-.hero-card{
-  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14);
-  border-radius:18px; padding:22px; backdrop-filter:blur(6px);
-  display:flex; flex-direction:column; justify-content:center; gap:14px;
-}
-.hero-card .mega-icon{ color:var(--blue); }
-.hero-card p{ font-weight:700; font-size:.95rem; }
-.hero-card.card-2 .mega-icon{ color:var(--orange); }
-.hero-card.card-4 .mega-icon{ color:var(--orange); }
-.hero-card.card-6 .mega-icon{ color:var(--orange); }
-
-/* ============================================================
-   PAGE HERO (internal pages)
-   ============================================================ */
-.page-hero{ position:relative; overflow:hidden; background:var(--navy); color:#fff; padding:64px 0 56px; }
-.breadcrumb{ font-size:.85rem; color:rgba(255,255,255,.55); margin-bottom:16px; position:relative; }
-.breadcrumb a{ color:rgba(255,255,255,.8); }
-.breadcrumb a:hover{ color:#fff; }
-.page-hero h1{ position:relative; color:#fff; font-size:clamp(1.9rem,3.4vw,2.7rem); margin-bottom:14px; }
-.page-hero-lead{ position:relative; color:rgba(255,255,255,.78); font-size:1.05rem; max-width:640px; }
-
-/* ============================================================
-   VALUES / ABOUT
-   ============================================================ */
-.values{ padding:96px 0; }
-.value-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
-.value-card{
-  background:var(--bg-soft); border:1px solid var(--line); border-radius:var(--radius);
-  padding:30px 24px;
-}
-.value-card .icon-badge{
-  width:46px; height:46px; border-radius:12px; background:var(--navy); color:#fff;
-  display:flex; align-items:center; justify-content:center; margin-bottom:18px;
-}
-.value-card h3{ font-size:1.05rem; margin-bottom:8px; }
-.value-card p{ color:var(--ink-soft); font-size:.9rem; }
-
-.about-split{ padding:96px 0; background-color:var(--bg-soft); background-image:radial-gradient(circle at 1px 1px, rgba(74,115,184,.16) 1px, transparent 0); background-size:26px 26px; }
-.about-split-inner{ display:grid; grid-template-columns:.9fr 1.1fr; gap:64px; align-items:center; }
-.about-visual{
-  aspect-ratio:1; border-radius:24px; background:linear-gradient(150deg, var(--navy), var(--navy-3));
-  display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
-}
-.about-visual .mega-icon{ color:var(--blue); }
-.about-visual img{ width:55%; height:auto; filter:drop-shadow(0 12px 30px rgba(0,0,0,.35)); }
-.about-copy h2{ font-size:clamp(1.5rem,2.6vw,2.1rem); margin-bottom:16px; }
-.about-copy p{ color:var(--ink-soft); margin-bottom:16px; max-width:560px; }
-.about-copy p:last-of-type{ margin-bottom:0; }
-
-/* ============================================================
-   PRODUCT CATEGORY / SERIES / VARIANTS
-   ============================================================ */
-.subcat-section{ padding:72px 0; }
-.subcat-section + .subcat-section{ border-top:1px solid var(--line); background-color:var(--bg-soft); background-image:radial-gradient(circle at 1px 1px, rgba(74,115,184,.16) 1px, transparent 0); background-size:26px 26px; }
-.subcat-head{ margin-bottom:36px; }
-.subcat-head h2{ font-size:clamp(1.4rem,2.2vw,1.8rem); margin-bottom:8px; }
-.subcat-head p{ color:var(--ink-soft); max-width:620px; }
-
-.series-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
-.series-card{
-  background:#fff; border:1px solid var(--line); border-radius:var(--radius);
-  padding:26px; display:flex; flex-direction:column; gap:14px; transition:.2s ease;
-}
-.series-card:hover{ border-color:var(--blue); box-shadow:var(--shadow-md); transform:translateY(-3px); }
-.series-card .brand-tag{
-  align-self:flex-start; font-size:.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em;
-  color:var(--blue-dark); background:var(--bg-soft); padding:4px 10px; border-radius:999px;
-}
-.series-card .series-icon{
-  width:52px; height:52px; border-radius:14px; background:var(--navy); color:#fff;
-  display:flex; align-items:center; justify-content:center;
-}
-.series-card h3{ font-size:1.1rem; }
-.series-card p{ color:var(--ink-soft); font-size:.9rem; }
-.series-card .series-range{ font-size:.85rem; font-weight:700; color:var(--navy); margin-top:auto; }
-
-.product-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
-.product-card{
-  background:var(--bg-soft); border:1px solid var(--line); border-radius:var(--radius);
-  padding:24px; display:flex; flex-direction:column; gap:12px; align-items:flex-start;
-}
-.product-card .series-icon{
-  width:44px; height:44px; border-radius:12px; background:var(--navy); color:#fff;
-  display:flex; align-items:center; justify-content:center;
-}
-.product-card h3{ font-size:.98rem; line-height:1.35; }
-.product-card .btn{ margin-top:auto; align-self:stretch; text-align:center; }
-
-@media (max-width:1080px){ .product-grid{ grid-template-columns:repeat(2,1fr); } }
-@media (max-width:640px){ .product-grid{ grid-template-columns:1fr; } }
-
-/* Series detail page */
-.series-intro{ padding:88px 0 64px; }
-.series-intro-inner{ display:grid; grid-template-columns:.8fr 1.2fr; gap:56px; align-items:center; }
-.series-intro-visual{
-  aspect-ratio:1; border-radius:24px; background:linear-gradient(150deg, var(--navy), var(--navy-3));
-  display:flex; align-items:center; justify-content:center;
-}
-.series-intro-visual .mega-icon{ color:var(--blue); width:35%; height:35%; --size:auto; }
-.series-intro-copy .brand-tag{
-  display:inline-block; font-size:.75rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em;
-  color:var(--blue-dark); background:var(--bg-soft); padding:5px 12px; border-radius:999px; margin-bottom:14px;
-}
-.series-intro-copy h1{ font-size:clamp(1.7rem,3vw,2.4rem); margin-bottom:14px; }
-.series-intro-copy p{ color:var(--ink-soft); font-size:1.02rem; max-width:560px; margin-bottom:22px; }
-.feature-tags{ display:flex; flex-wrap:wrap; gap:10px; }
-.feature-tags span{
-  background:var(--bg-soft); border:1px solid var(--line); padding:7px 13px; border-radius:999px;
-  font-size:.82rem; font-weight:600; color:var(--navy);
-}
-
-.variants-section{ padding:64px 0 96px; background-color:var(--bg-soft); background-image:radial-gradient(circle at 1px 1px, rgba(74,115,184,.16) 1px, transparent 0); background-size:26px 26px; }
-.variants-section .section-head h2{ font-size:clamp(1.4rem,2.2vw,1.8rem); }
-.variant-table{ display:flex; flex-direction:column; gap:14px; }
-.variant-row{
-  background:#fff; border:1px solid var(--line); border-radius:var(--radius);
-  padding:22px 26px; display:grid; grid-template-columns:1fr auto auto auto auto; gap:24px; align-items:center;
-}
-.variant-row .variant-power{ font-size:1.15rem; font-weight:800; color:var(--navy); }
-.variant-row .variant-power span{ display:block; font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); margin-bottom:2px; }
-.variant-spec{ font-size:.88rem; color:var(--ink-soft); text-align:center; }
-.variant-spec strong{ display:block; font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-soft); margin-bottom:2px; }
-.variant-spec span{ color:var(--ink); font-weight:600; }
-
-/* ============================================================
-   CONTACT
-   ============================================================ */
-.contact-section{ padding:96px 0; }
-.contact-grid{ display:grid; grid-template-columns:.85fr 1.15fr; gap:64px; align-items:start; }
-
-.contact-info-card{
-  background:var(--navy); color:#fff; border-radius:24px; padding:40px 32px;
-}
-.contact-info-card h2{ color:#fff; font-size:1.4rem; margin-bottom:10px; }
-.contact-info-card p{ color:rgba(255,255,255,.72); font-size:.94rem; margin-bottom:28px; }
-.contact-info-list{ display:flex; flex-direction:column; gap:22px; margin-bottom:28px; }
-.contact-info-list li{ display:flex; gap:14px; align-items:flex-start; }
-.contact-info-list .icon-badge{
-  width:40px; height:40px; border-radius:10px; background:rgba(255,255,255,.1);
-  display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--blue);
-}
-.contact-info-list strong{ display:block; font-size:.82rem; text-transform:uppercase; letter-spacing:.06em; color:rgba(255,255,255,.55); margin-bottom:4px; }
-.contact-info-list span, .contact-info-list a{ font-size:1rem; font-weight:600; }
-.contact-info-list a:hover{ color:var(--blue); }
-.contact-socials{ display:flex; gap:10px; }
-.contact-socials a{
-  width:38px; height:38px; border-radius:50%; border:1px solid rgba(255,255,255,.25);
-  display:flex; align-items:center; justify-content:center; color:#fff; transition:.15s;
-}
-.contact-socials a:hover{ background:rgba(255,255,255,.12); border-color:#fff; }
-
-.contact-form{
-  background:var(--bg-soft); border:1px solid var(--line); border-radius:24px; padding:40px;
-}
-.contact-form h2{ font-size:1.3rem; margin-bottom:6px; }
-.contact-form > p{ color:var(--ink-soft); font-size:.92rem; margin-bottom:26px; }
-.form-row{ display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px; }
-.form-field{ display:flex; flex-direction:column; gap:7px; }
-.form-field.full{ grid-column:1 / -1; }
-.form-field label{ font-size:.85rem; font-weight:700; color:var(--navy); }
-.form-field input, .form-field textarea{
-  font-family:inherit; font-size:.95rem; padding:12px 14px; border-radius:10px;
-  border:1.5px solid var(--line); background:#fff; color:var(--ink); resize:vertical;
-}
-.form-field input:focus, .form-field textarea:focus{ outline:none; border-color:var(--blue); }
-.contact-form .btn{ width:100%; margin-top:6px; }
-
-.map-visual{
-  margin-top:56px; border-radius:24px; overflow:hidden; border:1px solid var(--line);
-  aspect-ratio:21/7; position:relative;
-  background-color:#E7ECF3;
-  background-image:
-    linear-gradient(rgba(74,115,184,.16) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(74,115,184,.16) 1px, transparent 1px),
-    linear-gradient(rgba(74,115,184,.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(74,115,184,.08) 1px, transparent 1px);
-  background-size:120px 120px, 120px 120px, 24px 24px, 24px 24px;
-  display:flex; align-items:center; justify-content:center;
-}
-.map-visual::before{
-  content:''; position:absolute; inset:0;
-  background:radial-gradient(circle at 50% 55%, transparent 0%, transparent 30%, #E7ECF3 78%);
-}
-.map-pin{ position:relative; display:flex; flex-direction:column; align-items:center; gap:14px; text-align:center; }
-.map-pin svg{ color:var(--navy); filter:drop-shadow(0 8px 14px rgba(22,38,76,.35)); }
-.map-pin .map-pin-address{ font-weight:700; color:var(--navy); font-size:.95rem; }
-.map-pin .btn{ margin-top:4px; }
-
-/* ============================================================
-   NEWS LIST PAGE
-   ============================================================ */
-.news-list{ padding:96px 0; }
-
-/* ============================================================
-   CATEGORIES
-   ============================================================ */
-.categories{ padding:96px 0; }
-.cat-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
-.cat-card{
-  background:var(--bg-soft); border:1px solid var(--line); border-radius:var(--radius);
-  padding:28px 24px; display:flex; flex-direction:column; gap:14px; transition:.2s ease;
-}
-.cat-card:hover{ background:#fff; border-color:var(--blue); box-shadow:var(--shadow-md); transform:translateY(-3px); }
-.cat-card .mega-icon{ width:26px; height:26px; --size:26px; color:var(--orange); }
-.cat-card h3{ font-size:1.02rem; }
-.cat-card p{ color:var(--ink-soft); font-size:.88rem; }
-
-/* ============================================================
-   WHY
-   ============================================================ */
-/* ============================================================
-   STATS BAND
-   ============================================================ */
-.stats-band{
-  position:relative; overflow:hidden; padding:64px 0;
-  background:linear-gradient(120deg, var(--navy), var(--navy-3));
-}
-.stats-band::before{
-  content:''; position:absolute; inset:0;
-  background:radial-gradient(700px 400px at 85% 0%, rgba(127,166,230,.25), transparent 60%);
-}
-.stats-grid{
-  position:relative; display:grid; grid-template-columns:repeat(3,1fr); gap:0;
-}
-.stat-item{
-  text-align:center; padding:0 24px;
-  border-left:1px solid rgba(255,255,255,.15);
-}
-.stat-item:first-child{ border-left:0; }
-.stat-item .stat-num{
-  display:block; font-size:clamp(2.4rem,5vw,3.4rem); font-weight:800; color:#fff;
-  letter-spacing:-.02em; font-variant-numeric:tabular-nums;
-}
-.stat-item .stat-num .stat-suffix{ font-size:.55em; font-weight:700; color:var(--blue); }
-.stat-item .stat-caption{ color:rgba(255,255,255,.68); font-weight:600; font-size:.92rem; margin-top:8px; }
-
-@media (max-width:640px){
-  .stats-grid{ grid-template-columns:1fr; gap:28px; }
-  .stat-item{ border-left:0; border-top:1px solid rgba(255,255,255,.15); padding:24px 0 0; }
-  .stat-item:first-child{ border-top:0; padding-top:0; }
-}
-
-.why{ padding:96px 0; background-color:var(--bg-soft); background-image:radial-gradient(circle at 1px 1px, rgba(74,115,184,.16) 1px, transparent 0); background-size:26px 26px; }
-.why-inner{ display:grid; grid-template-columns:1.1fr .9fr; gap:64px; align-items:center; }
-.why-copy p{ color:var(--ink-soft); margin:16px 0 28px; font-size:1.02rem; max-width:540px; }
-.why-copy h2{ font-size:clamp(1.5rem,2.6vw,2.1rem); }
-.why-list{ display:flex; flex-direction:column; gap:22px; }
-.why-list li{ display:flex; gap:16px; align-items:flex-start; }
-.why-list svg{ color:var(--blue-dark); flex-shrink:0; margin-top:2px; }
-.why-list strong{ display:block; margin-bottom:3px; }
-.why-list span{ color:var(--ink-soft); font-size:.92rem; }
-
-.why-visual{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-.stat-box{
-  background:var(--navy); color:#fff; border-radius:var(--radius); padding:28px 22px;
-  display:flex; flex-direction:column; gap:8px;
-}
-.stat-box:nth-child(2){ background:var(--blue-dark); }
-.stat-box:nth-child(3){ background:var(--orange); }
-.stat-box:nth-child(4){ background:var(--navy-3); }
-.stat-num{ font-size:2.1rem; font-weight:800; letter-spacing:-.02em; }
-.stat-label{ font-size:.82rem; opacity:.85; font-weight:600; }
-
-/* ============================================================
-   INFRA HIGHLIGHT
-   ============================================================ */
-.infra{ padding:96px 0; }
-.infra-inner{
-  display:grid; grid-template-columns:.8fr 1.2fr; gap:56px; align-items:center;
-  background:var(--navy); color:#fff; border-radius:24px; padding:64px; position:relative; overflow:hidden;
-}
-.infra-inner::before{
-  content:''; position:absolute; inset:0;
-  background:radial-gradient(600px 400px at 90% 20%, rgba(14,165,233,.28), transparent 60%);
-}
-.infra-visual{
-  position:relative; display:flex; align-items:center; justify-content:center;
-  aspect-ratio:1; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); border-radius:20px;
-}
-.infra-visual .mega-icon{ color:var(--blue); }
-.infra-copy{ position:relative; }
-.infra .eyebrow{ color:var(--blue); }
-.infra-copy h2{ color:#fff; font-size:clamp(1.5rem,2.6vw,2.1rem); margin-bottom:16px; }
-.infra-copy p{ color:rgba(255,255,255,.78); margin-bottom:26px; max-width:540px; }
-.infra-tags{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:28px; }
-.infra-tags span{
-  background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18);
-  padding:8px 14px; border-radius:999px; font-size:.82rem; font-weight:600;
-}
-.infra .link-arrow{ color:#fff; border-color:var(--blue); }
-
-/* ============================================================
-   NEWS
-   ============================================================ */
-.news-teaser{ padding:96px 0; background-color:var(--bg-soft); background-image:radial-gradient(circle at 1px 1px, rgba(74,115,184,.16) 1px, transparent 0); background-size:26px 26px; }
-.news-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
-.news-card{
-  background:#fff; border:1px solid var(--line); border-radius:var(--radius);
-  padding:26px; display:flex; flex-direction:column; gap:10px; transition:.2s ease;
-}
-.news-card:hover{ box-shadow:var(--shadow-md); transform:translateY(-3px); border-color:var(--blue); }
-.news-date{ color:var(--orange); font-weight:700; font-size:.78rem; text-transform:uppercase; letter-spacing:.06em; }
-.news-card h3{ font-size:1.05rem; }
-.news-card p{ color:var(--ink-soft); font-size:.9rem; }
-
-/* ============================================================
-   CTA BAND
-   ============================================================ */
-.cta-band{ background:linear-gradient(120deg, var(--blue-dark), var(--navy)); color:#fff; padding:64px 0; }
-.cta-inner{ display:flex; align-items:center; justify-content:space-between; gap:32px; flex-wrap:wrap; }
-.cta-inner h2{ color:#fff; font-size:clamp(1.4rem,2.4vw,1.9rem); margin-bottom:8px; }
-.cta-inner p{ color:rgba(255,255,255,.8); }
-.cta-actions{ display:flex; gap:14px; flex-wrap:wrap; }
-
-/* ============================================================
-   FOOTER
-   ============================================================ */
-.site-footer{ background:var(--navy); color:rgba(255,255,255,.8); }
-.footer-grid{
-  display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px;
-  padding:72px 24px 48px;
-}
-.footer-logo{ display:flex; align-items:center; gap:12px; }
-.footer-brand p{ margin-top:16px; font-size:.9rem; line-height:1.7; color:rgba(255,255,255,.6); max-width:320px; }
-.footer-col h4{ color:#fff; font-size:.92rem; margin-bottom:18px; text-transform:uppercase; letter-spacing:.06em; }
-.footer-col ul{ display:flex; flex-direction:column; gap:11px; }
-.footer-col a{ font-size:.9rem; color:rgba(255,255,255,.68); }
-.footer-col a:hover{ color:#fff; }
-.footer-contact li{ display:flex; align-items:flex-start; gap:10px; font-size:.9rem; color:rgba(255,255,255,.68); }
-.footer-contact svg{ color:var(--blue); flex-shrink:0; margin-top:1px; }
-.footer-bottom{ border-top:1px solid rgba(255,255,255,.1); }
-.footer-bottom-inner{ padding:22px 24px; font-size:.8rem; color:rgba(255,255,255,.5); }
-
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
-@media (max-width:1080px){
-  .hero-inner{ grid-template-columns:1fr; padding:70px 24px; }
-  .hero-visual{ order:-1; max-width:460px; }
-  .why-inner{ grid-template-columns:1fr; }
-  .infra-inner{ grid-template-columns:1fr; padding:44px 28px; }
-  .infra-visual{ max-width:220px; margin:0 auto; }
-  .cat-grid{ grid-template-columns:repeat(2,1fr); }
-  .news-grid{ grid-template-columns:1fr; }
-  .footer-grid{ grid-template-columns:1fr 1fr; }
-  .value-grid{ grid-template-columns:1fr 1fr; }
-  .about-split-inner{ grid-template-columns:1fr; }
-  .about-visual{ max-width:320px; margin:0 auto; aspect-ratio:16/9; }
-  .contact-grid{ grid-template-columns:1fr; }
-  .series-grid{ grid-template-columns:1fr 1fr; }
-  .series-intro-inner{ grid-template-columns:1fr; }
-  .series-intro-visual{ max-width:280px; margin:0 auto; }
-  .variant-row{ grid-template-columns:1fr 1fr; row-gap:14px; }
-}
-
-@media (max-width:860px){
-  .main-nav{
-    position:fixed; inset:76px 0 0 0; background:#fff; padding:20px 24px; overflow-y:auto;
-    transform:translateX(100%); transition:.25s ease; border-top:1px solid var(--line);
-  }
-  .main-nav.open{ transform:translateX(0); }
-  .main-nav ul{ flex-direction:column; align-items:stretch; gap:2px; }
-  .main-nav a{ padding:14px 12px; border-radius:10px; }
-  .has-mega .mega-menu{
-    position:static; transform:none; opacity:1; visibility:visible; pointer-events:auto;
-    display:none; width:auto; grid-template-columns:1fr; box-shadow:none; border:0; padding:0 0 0 12px; margin-top:4px;
-  }
-  .has-mega.open .mega-menu{ display:grid; }
-  .header-phone{ display:none; }
-  .nav-toggle{ display:flex; }
-  .header-inner{ height:68px; }
-}
-
-@media (max-width:640px){
-  .hero-inner{ padding:52px 20px 60px; }
-  .hero-visual{ grid-template-columns:1fr 1fr; }
-  .cat-grid{ grid-template-columns:1fr; }
-  .why-visual{ grid-template-columns:1fr 1fr; }
-  .footer-grid{ grid-template-columns:1fr; padding:56px 20px 36px; }
-  .cta-inner{ flex-direction:column; align-items:flex-start; }
-  section{ padding-left:0; padding-right:0; }
-  .categories,.why,.infra,.news-teaser{ padding:64px 0; }
-  .value-grid{ grid-template-columns:1fr; }
-  .values,.about-split,.news-list,.contact-section{ padding:56px 0; }
-  .page-hero{ padding:48px 0 40px; }
-  .form-row{ grid-template-columns:1fr; }
-  .contact-form{ padding:28px 22px; }
-  .contact-info-card{ padding:30px 24px; }
-  .series-grid{ grid-template-columns:1fr; }
-  .series-intro{ padding:56px 0 48px; }
-  .variants-section{ padding:48px 0 64px; }
-  .variant-row{ grid-template-columns:1fr; text-align:left; }
-  .variant-spec{ text-align:left; }
-}
+<script src="assets/js/main.js"></script>
+</body>
+</html>
