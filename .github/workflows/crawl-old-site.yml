@@ -1,0 +1,85 @@
+name: Save every page and image of the recovered old site (preview channel only)
+
+on:
+  push:
+    branches: [claude/peaceful-ramanujan-3h5541]
+    paths: [.github/workflows/crawl-old-site.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: claude/peaceful-ramanujan-3h5541
+      - name: Crawl the preview channel
+        run: |
+          pip install --quiet requests
+          python3 - <<'PY'
+          import os, re, json, hashlib, requests
+          from urllib.parse import urljoin, urlparse, parse_qs, unquote
+          BASE = open('recovery/_meta/preview-url.txt').read().strip().rstrip('/')
+          host = urlparse(BASE).netloc
+          OUT = 'recovery/crawl'; os.makedirs(OUT + '/_media', exist_ok=True)
+          seen, queue, pages, media = set(), ['/'], {}, {}
+          sess = requests.Session(); sess.headers['User-Agent'] = 'airlex-site-recovery'
+          def norm(u):
+              p = urlparse(u); return (p.path or '/') + (('?' + p.query) if p.query and not p.path.startswith('/_next/image') else '')
+          IMG_RE = re.compile(r'''(?:src|href|srcSet|srcset|content)=["']([^"']+)["']|url\(([^)]+)\)|"(https://(?:firebasestorage\.googleapis\.com|storage\.googleapis\.com)[^"\\]+)''')
+          while queue and len(seen) < 400:
+              path = queue.pop(0)
+              if path in seen: continue
+              seen.add(path)
+              try: r = sess.get(BASE + path, timeout=60, allow_redirects=True)
+              except Exception as e: print('ERR', path, e); continue
+              ct = r.headers.get('content-type', '')
+              if 'text/html' not in ct: continue
+              html = r.text
+              fn = (path.strip('/') or 'index').replace('/', '__').split('?')[0] + '.html'
+              open(f'{OUT}/{fn}', 'w', encoding='utf-8').write(html)
+              title = re.search(r'<title[^>]*>(.*?)</title>', html, re.S)
+              pages[path] = {'status': r.status_code, 'file': fn, 'title': title.group(1).strip() if title else ''}
+              for m in re.finditer(r'href=["\']([^"\'#]+)["\']', html):
+                  u = urljoin(BASE + path, m.group(1)); p = urlparse(u)
+                  if p.netloc == host and not p.path.startswith('/_next/') and not re.search(r'\.(png|jpe?g|webp|svg|ico|pdf|css|js|json|xml|txt)$', p.path, re.I):
+                      q = p.path or '/'
+                      if q not in seen and q not in queue: queue.append(q)
+              for m in IMG_RE.finditer(html):
+                  raw = next(g for g in m.groups() if g).strip('\'" ').replace('&amp;', '&')
+                  for part in raw.split(','):
+                      u = part.strip().split(' ')[0]
+                      if not u or u.startswith('data:'): continue
+                      full = urljoin(BASE + path, u)
+                      pu = urlparse(full)
+                      if pu.path.startswith('/_next/image'):
+                          inner = parse_qs(pu.query).get('url', [''])[0]
+                          full = urljoin(BASE + '/', unquote(inner)) if inner else ''
+                      if full and re.search(r'\.(png|jpe?g|webp|gif|svg|avif)(\?|$)|firebasestorage|storage\.googleapis', full, re.I):
+                          media.setdefault(full, set()).add(path)
+          print(len(pages), 'pages,', len(media), 'images')
+          saved = {}
+          for url, used in media.items():
+              try:
+                  r = sess.get(url, timeout=60)
+                  if r.status_code != 200: print('IMG', r.status_code, url); continue
+                  name = unquote(urlparse(url).path.split('/')[-1]).split('?')[0] or 'image'
+                  name = re.sub(r'[^\w.\-]+', '_', name)[-80:]
+                  h = hashlib.sha1(url.encode()).hexdigest()[:8]
+                  fn = f'{h}_{name}'
+                  open(f'{OUT}/_media/{fn}', 'wb').write(r.content)
+                  saved[url] = {'file': fn, 'bytes': len(r.content), 'used_on': sorted(used)}
+              except Exception as e: print('IMG ERR', url, e)
+          json.dump({'base': BASE, 'pages': pages, 'images': saved}, open(f'{OUT}/_index.json', 'w'), indent=2, ensure_ascii=False)
+          for p, v in sorted(pages.items()): print(v['status'], p, '|', v['title'])
+          print('saved images:', len(saved))
+          PY
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add recovery
+          git commit -m "Crawl of the recovered old site (pages + images)" || echo "nothing to commit"
+          git push origin HEAD:claude/peaceful-ramanujan-3h5541

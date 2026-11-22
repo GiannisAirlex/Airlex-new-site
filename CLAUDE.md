@@ -4,9 +4,9 @@ Static site (plain HTML/CSS/JS, no build step), Greek language.
 
 ## Deployment
 - **Live site: https://airlex-site.web.app** (Firebase Hosting, project `airlex-site`).
-- Every push to `main` deploys automatically via `.github/workflows/firebase-deploy.yml`.
-  It needs the GitHub secret `FIREBASE_SERVICE_ACCOUNT_AIRLEX_SITE`.
-- Changes are not live until they are merged into `main`.
+- ⚠️ This repo does NOT deploy anymore (automatic deploy removed 2026-11-22). The real site is the
+  separate "airlex site 2.1" codebase. Never deploy this repo to airlex-site: it would overwrite the real site.
+- `recovery/` holds the files of earlier Firebase versions (see recovery/_meta) — keep it.
 - GitHub Pages (giannisairlex.github.io/Airlex-new-site) also builds from `main`, but it is not the official address.
 
 ## Structure
