@@ -883,3 +883,7 @@ a.cat-card:active, a.series-card:active, a.news-card:active, a.hero-card:active{
 .map-embed .map-open{ position:absolute; right:16px; bottom:16px; background:#fff; box-shadow:var(--shadow-md); }
 @media (max-width:640px){ .map-embed{ aspect-ratio:4/5; margin-top:40px; } }
 
+/* Spam trap: invisible to people, filled in by bots */
+.hp-field{ position:absolute !important; left:-9999px !important; width:1px; height:1px; overflow:hidden; }
+.contact-form{ position:relative; }
+

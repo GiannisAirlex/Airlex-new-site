@@ -1,0 +1,44 @@
+rules_version = '2';
+
+// Airlex Hellas — who may read and write what.
+// Admins are the users listed in the "admins" collection (document id = their Auth UID).
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    // Admin list: a signed-in user may only check their own entry. Edited in the console only.
+    match /admins/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false;
+    }
+
+    // News: everyone sees published items; only admins manage them.
+    match /news/{id} {
+      allow read: if resource.data.published == true || isAdmin();
+      allow create, update: if isAdmin()
+        && request.resource.data.title is string && request.resource.data.title.size() > 0
+        && request.resource.data.title.size() <= 200
+        && request.resource.data.excerpt is string && request.resource.data.excerpt.size() <= 1000
+        && request.resource.data.published is bool
+        && request.resource.data.date is timestamp;
+      allow delete: if isAdmin();
+    }
+
+    // Contact messages: anyone can send one (validated); only admins can read or manage them.
+    match /messages/{id} {
+      allow create: if request.resource.data.keys().hasOnly(['name', 'phone', 'email', 'message', 'createdAt', 'read'])
+        && request.resource.data.name is string && request.resource.data.name.size() > 0 && request.resource.data.name.size() <= 120
+        && request.resource.data.email is string && request.resource.data.email.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$') && request.resource.data.email.size() <= 200
+        && request.resource.data.phone is string && request.resource.data.phone.size() <= 40
+        && request.resource.data.message is string && request.resource.data.message.size() > 0 && request.resource.data.message.size() <= 5000
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.read == false;
+      allow read, delete: if isAdmin();
+      allow update: if isAdmin() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['read']);
+    }
+  }
+}

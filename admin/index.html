@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Διαχείριση | Airlex Hellas</title>
+<link rel="icon" href="../assets/img/logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- Login -->
+<main id="loginView" class="login" hidden>
+  <form id="loginForm" class="card login-card" novalidate>
+    <div class="brand"><img src="../assets/img/logo.png" alt="" width="44" height="44"><span>AIRLEX <em>HELLAS</em></span></div>
+    <h1>Διαχείριση ιστοσελίδας</h1>
+    <label>Email<input type="email" id="loginEmail" autocomplete="username" required></label>
+    <label>Κωδικός<input type="password" id="loginPassword" autocomplete="current-password" required></label>
+    <button class="btn btn-primary" type="submit">Σύνδεση</button>
+    <button class="link" type="button" id="resetBtn">Ξέχασα τον κωδικό</button>
+    <p class="msg" id="loginMsg" role="alert"></p>
+  </form>
+</main>
+
+<!-- Signed in but not an admin -->
+<main id="deniedView" class="login" hidden>
+  <div class="card login-card">
+    <h1>Δεν έχετε πρόσβαση</h1>
+    <p>Ο λογαριασμός <strong id="deniedEmail"></strong> δεν είναι διαχειριστής.</p>
+    <p class="muted">Για πρόσβαση, προσθέστε στο Firestore ένα έγγραφο <code>admins/<span id="deniedUid"></span></code>.</p>
+    <button class="btn" id="deniedLogout" type="button">Αποσύνδεση</button>
+  </div>
+</main>
+
+<!-- Dashboard -->
+<div id="appView" hidden>
+  <header class="topbar">
+    <div class="brand"><img src="../assets/img/logo.png" alt="" width="34" height="34"><span>AIRLEX <em>HELLAS</em></span><small>Διαχείριση</small></div>
+    <nav class="tabs" role="tablist">
+      <button role="tab" data-tab="messages" aria-selected="true">Μηνύματα <span class="badge" id="unreadBadge" hidden>0</span></button>
+      <button role="tab" data-tab="news" aria-selected="false">Νέα</button>
+    </nav>
+    <div class="who"><span id="userEmail"></span><a href="../index.html" target="_blank" rel="noopener">Ιστοσελίδα ↗</a><button class="link" id="logoutBtn" type="button">Αποσύνδεση</button></div>
+  </header>
+
+  <!-- Messages -->
+  <section class="panel" id="tab-messages">
+    <div class="panel-head">
+      <h2>Μηνύματα από τη φόρμα επικοινωνίας</h2>
+      <label class="toggle"><input type="checkbox" id="onlyUnread"> Μόνο αδιάβαστα</label>
+    </div>
+    <div id="messagesList" class="list"></div>
+    <p class="empty" id="messagesEmpty" hidden>Δεν υπάρχουν μηνύματα.</p>
+  </section>
+
+  <!-- News -->
+  <section class="panel" id="tab-news" hidden>
+    <div class="panel-head">
+      <h2>Νέα &amp; Ανακοινώσεις</h2>
+      <div class="actions">
+        <button class="btn" id="importBtn" type="button" hidden>Εισαγωγή υπαρχόντων νέων</button>
+        <button class="btn btn-primary" id="newNewsBtn" type="button">+ Νέο άρθρο</button>
+      </div>
+    </div>
+    <form id="newsForm" class="card news-form" hidden novalidate>
+      <h3 id="newsFormTitle">Νέο άρθρο</h3>
+      <label>Τίτλος<input id="newsTitle" maxlength="200" required></label>
+      <label>Μήνας / ημερομηνία<input type="date" id="newsDate" required></label>
+      <label>Σύντομο κείμενο<textarea id="newsExcerpt" rows="3" maxlength="1000"></textarea></label>
+      <label class="toggle"><input type="checkbox" id="newsPublished" checked> Δημοσιευμένο</label>
+      <div class="actions">
+        <button class="btn btn-primary" type="submit">Αποθήκευση</button>
+        <button class="btn" type="button" id="newsCancel">Άκυρο</button>
+      </div>
+    </form>
+    <div id="newsList" class="list"></div>
+    <p class="empty" id="newsEmpty" hidden>Δεν υπάρχουν νέα ακόμη. Η ιστοσελίδα δείχνει τα αρχικά νέα μέχρι να προσθέσετε το πρώτο.</p>
+  </section>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script type="module" src="admin.js"></script>
+</body>
+</html>
