@@ -1,0 +1,19 @@
+name: Show the key ID of the Firebase secret in this repo (not the key)
+
+on:
+  push:
+    branches: [claude/peaceful-ramanujan-3h5541]
+    paths: [.github/workflows/key-id.yml]
+
+permissions:
+  contents: read
+
+jobs:
+  key-id:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print private_key_id and account only
+        env:
+          SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_AIRLEX_SITE }}
+        run: |
+          printf '%s' "$SA" | python3 -c "import json,sys; d=json.load(sys.stdin); print('KEY_ID', d['private_key_id']); print('ACCOUNT', d['client_email'])"
