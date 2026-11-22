@@ -9,7 +9,8 @@
       "CLAUDE.md",
       "**/.*",
       "**/node_modules/**",
-      "promo/**"
+      "promo/**",
+      "firestore.rules"
     ],
     "headers": [
       {
@@ -29,7 +30,23 @@
             "value": "public, max-age=86400"
           }
         ]
+      },
+      {
+        "source": "/admin/**",
+        "headers": [
+          {
+            "key": "X-Robots-Tag",
+            "value": "noindex, nofollow"
+          },
+          {
+            "key": "Cache-Control",
+            "value": "no-store"
+          }
+        ]
       }
     ]
+  },
+  "firestore": {
+    "rules": "firestore.rules"
   }
 }

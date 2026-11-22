@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=202611221548">
+<link rel="stylesheet" href="assets/css/style.css?v=202611221601">
 </head>
 <body>
 
@@ -104,7 +104,7 @@
           </div>
         </div>
 
-        <form class="contact-form" id="contactForm" data-mailto="" novalidate>
+        <form class="contact-form" id="contactForm" novalidate>
           <h2>Στείλτε μας μήνυμα</h2>
           <p>Συμπληρώστε τη φόρμα και θα επικοινωνήσουμε μαζί σας το συντομότερο δυνατό.</p>
           <div class="form-row">
@@ -129,6 +129,7 @@
               <textarea id="message" name="message" rows="5" required></textarea>
             </div>
           </div>
+          <div class="hp-field" aria-hidden="true"><label for="website">Website</label><input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></div>
           <button type="submit" class="btn btn-primary btn-lg">Αποστολή Μηνύματος</button>
           <p class="form-status" id="formStatus" role="status" aria-live="polite" hidden></p>
         </form>
@@ -204,6 +205,7 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js?v=202611221548"></script>
+<script src="assets/js/main.js?v=202611221601"></script>
+<script type="module" src="assets/js/site-data.js?v=202611221601"></script>
 </body>
 </html>

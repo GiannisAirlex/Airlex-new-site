@@ -28,3 +28,10 @@ Static site (plain HTML/CSS/JS, no build step), Greek language.
   `npx remotion render src/index.ts ClayStory out/airlex-clay-story.mp4` from `promo/`.
 - Cache busting: every page loads `assets/css/style.css?v=…` and `assets/js/main.js?v=…`.
   When CSS/JS change, bump the `v=` value in all HTML files (e.g. to the short commit hash) so phones fetch the new files.
+
+## Admin panel (/admin)
+- `admin/` — Firebase Auth (email/password) + Firestore. Admins = documents in `admins/{uid}` (added by hand in the Firebase console).
+- Collections: `news` (title, excerpt, date, published) shown on news.html and the homepage via `assets/js/site-data.js`
+  (static HTML stays as fallback when the collection is empty); `messages` (contact form inbox).
+- Security rules live in `firestore.rules`; publish them from the Firebase console (Firestore → Rules) or `firebase deploy --only firestore:rules`.
+  The GitHub workflow deploys hosting only.

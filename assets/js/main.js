@@ -85,32 +85,39 @@
   }
 })();
 
-/* Contact form: never fail silently.
-   Set data-mailto="name@domain" on #contactForm to open the visitor's
-   email app with the message pre-filled; until then, point to the phone. */
+/* Contact form: saves the message to the admin inbox (Firestore, via
+   site-data.js). If that is unavailable, it never fails silently: it
+   shows the phone number instead. */
 (function () {
   var form = document.getElementById('contactForm');
   if (!form) return;
   var status = document.getElementById('formStatus');
-  function show(html, ok) {
+  var button = form.querySelector('button[type="submit"]');
+  function show(html, kind) {
     status.innerHTML = html;
-    status.className = 'form-status ' + (ok ? 'is-ok' : 'is-info');
+    status.className = 'form-status is-' + kind;
     status.hidden = false;
   }
+  var fallback = 'Η αποστολή δεν ήταν δυνατή αυτή τη στιγμή. Καλέστε μας στο <a href="tel:+302109650850">210 9650850</a>.';
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
-    var to = (form.getAttribute('data-mailto') || '').trim();
-    var v = function (id) { return (document.getElementById(id).value || '').trim(); };
-    if (to) {
-      var subject = 'Αίτημα από την ιστοσελίδα — ' + v('fullname');
-      var body = 'Ονοματεπώνυμο: ' + v('fullname') + '\nΤηλέφωνο: ' + v('phone') +
-                 '\nEmail: ' + v('email') + '\n\n' + v('message');
-      window.location.href = 'mailto:' + to + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-      show('Ανοίγει η εφαρμογή email σας με το μήνυμα έτοιμο — πατήστε «Αποστολή» για να το στείλετε.', true);
-    } else {
-      show('Η αποστολή μέσω φόρμας δεν είναι ακόμη διαθέσιμη. Για άμεση εξυπηρέτηση καλέστε μας στο <a href="tel:+302109650850">210 9650850</a>.', false);
-    }
+    var v = function (id) { var el = document.getElementById(id); return el ? (el.value || '').trim() : ''; };
+    if (v('website')) return; // spam trap filled in: silently ignore
+    if (!window.AirlexForms) { show(fallback, 'info'); return; }
+    button.disabled = true;
+    var label = button.textContent;
+    button.textContent = 'Αποστολή…';
+    window.AirlexForms.send({ name: v('fullname'), phone: v('phone'), email: v('email'), message: v('message') })
+      .then(function () {
+        form.reset();
+        show('Ευχαριστούμε! Λάβαμε το μήνυμά σας και θα επικοινωνήσουμε μαζί σας σύντομα.', 'ok');
+      })
+      .catch(function (err) {
+        console.warn('Contact form', err);
+        show(fallback, 'info');
+      })
+      .then(function () { button.disabled = false; button.textContent = label; });
   });
 })();
 
