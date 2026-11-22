@@ -654,3 +654,13 @@ button{font-family:inherit;}
 @media (max-width:440px){
   .header-actions .btn{ display:none; }
 }
+
+/* Contact form status message */
+.form-status{ margin-top:16px; padding:14px 16px; border-radius:12px; font-size:.92rem; font-weight:600; line-height:1.5; }
+.form-status.is-info{ background:#EEF3FB; border:1px solid #C9D8F0; color:var(--navy); }
+.form-status.is-ok{ background:#EAF7F0; border:1px solid #BFE5CF; color:#1B5E3B; }
+.form-status a{ font-weight:800; text-decoration:underline; }
+
+/* News items on the news page are not links */
+article.news-card:hover{ transform:none; box-shadow:none; border-color:var(--line); }
+

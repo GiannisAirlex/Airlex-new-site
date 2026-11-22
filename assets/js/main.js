@@ -84,3 +84,33 @@
     setTimeout(startAll, 2500);
   }
 })();
+
+/* Contact form: never fail silently.
+   Set data-mailto="name@domain" on #contactForm to open the visitor's
+   email app with the message pre-filled; until then, point to the phone. */
+(function () {
+  var form = document.getElementById('contactForm');
+  if (!form) return;
+  var status = document.getElementById('formStatus');
+  function show(html, ok) {
+    status.innerHTML = html;
+    status.className = 'form-status ' + (ok ? 'is-ok' : 'is-info');
+    status.hidden = false;
+  }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    var to = (form.getAttribute('data-mailto') || '').trim();
+    var v = function (id) { return (document.getElementById(id).value || '').trim(); };
+    if (to) {
+      var subject = 'Αίτημα από την ιστοσελίδα — ' + v('fullname');
+      var body = 'Ονοματεπώνυμο: ' + v('fullname') + '\nΤηλέφωνο: ' + v('phone') +
+                 '\nEmail: ' + v('email') + '\n\n' + v('message');
+      window.location.href = 'mailto:' + to + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      show('Ανοίγει η εφαρμογή email σας με το μήνυμα έτοιμο — πατήστε «Αποστολή» για να το στείλετε.', true);
+    } else {
+      show('Η αποστολή μέσω φόρμας δεν είναι ακόμη διαθέσιμη. Για άμεση εξυπηρέτηση καλέστε μας στο <a href="tel:+302109650850">210 9650850</a>.', false);
+    }
+  });
+})();
+
