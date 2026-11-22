@@ -271,7 +271,7 @@ button{font-family:inherit;}
 /* ============================================================
    PRODUCT CATEGORY / SERIES / VARIANTS
    ============================================================ */
-.subcat-section{ padding:72px 0; }
+.subcat-section{ padding:72px 0; scroll-margin-top:76px; }
 .subcat-section + .subcat-section{ border-top:1px solid var(--line); background-color:var(--bg-soft); background-image:radial-gradient(circle at 1px 1px, rgba(74,115,184,.16) 1px, transparent 0); background-size:26px 26px; }
 .subcat-head{ margin-bottom:36px; }
 .subcat-head h2{ font-size:clamp(1.4rem,2.2vw,1.8rem); margin-bottom:8px; }
