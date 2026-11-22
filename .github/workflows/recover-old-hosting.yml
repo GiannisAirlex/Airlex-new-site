@@ -1,0 +1,97 @@
+name: Recover previous Firebase Hosting version (read-only for the live site)
+
+# Runs once when this file is pushed to the working branch.
+# It never touches the live channel: the old version is released only to a
+# temporary preview channel ("recovery", expires in 7 days), its files are
+# downloaded from there and committed to recovery/ on this branch.
+on:
+  push:
+    branches: [claude/peaceful-ramanujan-3h5541]
+    paths: [.github/workflows/recover-old-hosting.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: claude/peaceful-ramanujan-3h5541
+      - name: Recover files of the last release before 2026-11-22 14:50 UTC
+        env:
+          SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_AIRLEX_SITE }}
+        run: |
+          printf '%s' "$SA" > "$RUNNER_TEMP/sa.json"
+          pip install --quiet google-auth requests
+          python3 - <<'PY'
+          import json, os, time, requests
+          from google.oauth2 import service_account
+          import google.auth.transport.requests as tr
+          creds = service_account.Credentials.from_service_account_file(
+              os.path.join(os.environ['RUNNER_TEMP'], 'sa.json'),
+              scopes=['https://www.googleapis.com/auth/firebase', 'https://www.googleapis.com/auth/cloud-platform'])
+          s = tr.AuthorizedSession(creds)
+          API = 'https://firebasehosting.googleapis.com/v1beta1'
+          SITE = 'sites/airlex-site'
+          os.makedirs('recovery/_meta', exist_ok=True)
+
+          rels, tok = [], None
+          while True:
+              r = s.get(f'{API}/{SITE}/channels/live/releases', params={'pageSize': 100, **({'pageToken': tok} if tok else {})}).json()
+              rels += r.get('releases', []); tok = r.get('nextPageToken')
+              if not tok: break
+          summary = [{'time': x.get('releaseTime'), 'type': x.get('type'), 'by': (x.get('releaseUser') or {}).get('email'),
+                      'version': x.get('version', {}).get('name'), 'files': x.get('version', {}).get('fileCount'),
+                      'message': x.get('message')} for x in rels]
+          json.dump(summary, open('recovery/_meta/releases.json', 'w'), indent=2, ensure_ascii=False)
+          print(json.dumps(summary, indent=1, ensure_ascii=False)[:4000])
+
+          old = [x for x in rels if x.get('releaseTime', '') < '2026-11-22T14:50:00Z' and x.get('version')]
+          assert old, 'No release before 2026-11-22 14:50 UTC found'
+          target = old[0]  # newest of the old ones
+          vname = target['version']['name']
+          json.dump(target, open('recovery/_meta/old-release.json', 'w'), indent=2, ensure_ascii=False)
+          print('Recovering', vname, target.get('releaseTime'))
+
+          c = s.post(f'{API}/{SITE}/channels', params={'channelId': 'recovery'}, json={'ttl': '604800s'})
+          print('channel create:', c.status_code)
+          rr = s.post(f'{API}/{SITE}/channels/recovery/releases', params={'versionName': vname})
+          print('channel release:', rr.status_code, rr.text[:300]); rr.raise_for_status()
+          url = s.get(f'{API}/{SITE}/channels/recovery').json()['url'].rstrip('/')
+          print('preview url:', url)
+          open('recovery/_meta/preview-url.txt', 'w').write(url + '\n')
+
+          files, tok = [], None
+          while True:
+              r = s.get(f'{API}/{vname}/files', params={'pageSize': 1000, **({'pageToken': tok} if tok else {})}).json()
+              files += r.get('files', []); tok = r.get('nextPageToken')
+              if not tok: break
+          print(len(files), 'files')
+          time.sleep(20)  # let the preview channel propagate
+          ok = 0
+          for f in files:
+              path = f['path']
+              for attempt in range(4):
+                  resp = requests.get(url + path, timeout=60)
+                  if resp.status_code == 200: break
+                  time.sleep(5)
+              out = 'recovery/site' + path
+              os.makedirs(os.path.dirname(out), exist_ok=True)
+              if resp.status_code == 200:
+                  open(out, 'wb').write(resp.content); ok += 1
+              else:
+                  print('FAILED', resp.status_code, path)
+          print(f'downloaded {ok}/{len(files)}')
+          json.dump({'version': vname, 'files': [f['path'] for f in files], 'downloaded': ok},
+                    open('recovery/_meta/files.json', 'w'), indent=2)
+          PY
+          rm -f "$RUNNER_TEMP/sa.json"
+      - name: Commit recovered files to this branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add recovery
+          git commit -m "Recovered files of the previous Firebase Hosting version" || echo "nothing to commit"
+          git push origin HEAD:claude/peaceful-ramanujan-3h5541
