@@ -120,19 +120,25 @@ button{font-family:inherit;}
    ============================================================ */
 .site-header{
   position:sticky; top:0; z-index:100;
+  border-bottom:1px solid var(--line);
+}
+/* Blur lives on a pseudo-element: backdrop-filter on the header itself would
+   trap the fixed mobile menu inside the header's box */
+.site-header::before{
+  content:""; position:absolute; inset:0; z-index:-1;
   background:rgba(255,255,255,.92);
   backdrop-filter:saturate(180%) blur(10px);
-  border-bottom:1px solid var(--line);
+  -webkit-backdrop-filter:saturate(180%) blur(10px);
 }
 .header-inner{
   display:flex; align-items:center; gap:28px;
   height:76px;
 }
 .logo{ display:flex; align-items:center; gap:12px; color:var(--navy); margin-right:auto; }
-.logo-mark{ display:flex; filter:drop-shadow(0 2px 6px rgba(22,38,76,.35)); }
+.logo-mark{ display:flex; flex-shrink:0; filter:drop-shadow(0 2px 6px rgba(22,38,76,.35)); }
 .logo-mark img{ width:40px; height:40px; }
 .footer-logo img{ filter:drop-shadow(0 2px 6px rgba(0,0,0,.35)); }
-.logo-text{ font-size:1.3rem; font-weight:800; letter-spacing:-0.01em; }
+.logo-text{ font-size:1.3rem; font-weight:800; letter-spacing:-0.01em; white-space:nowrap; }
 .logo-text em{ font-style:normal; color:var(--blue-dark); }
 .logo-text.light{ color:#fff; }
 .logo-text.light em{ color:var(--blue); }
@@ -156,7 +162,7 @@ button{font-family:inherit;}
 .mega-menu a:hover{ background:var(--bg-soft); color:var(--blue-dark); }
 .mega-menu .mega-icon{ color:var(--orange); }
 
-.header-actions{ display:flex; align-items:center; gap:14px; }
+.header-actions{ display:flex; align-items:center; gap:14px; flex-shrink:0; }
 .header-phone{ display:flex; align-items:center; gap:7px; font-weight:700; color:var(--navy); font-size:.92rem; }
 .header-phone svg{ color:var(--orange); }
 
@@ -596,16 +602,20 @@ button{font-family:inherit;}
 
 @media (max-width:860px){
   .main-nav{
-    position:fixed; inset:76px 0 0 0; background:#fff; padding:20px 24px; overflow-y:auto;
-    transform:translateX(100%); transition:.25s ease; border-top:1px solid var(--line);
+    position:fixed; inset:68px 0 0 0; background:#fff; padding:20px 24px; overflow-y:auto;
+    border-top:1px solid var(--line);
+    /* closed menu is clipped in place (not pushed off-screen) so phones don't widen the page */
+    clip-path:inset(0 0 0 100%); visibility:hidden;
+    transition:clip-path .25s ease, visibility 0s linear .25s;
   }
-  .main-nav.open{ transform:translateX(0); }
+  .main-nav.open{ clip-path:inset(0); visibility:visible; transition:clip-path .25s ease; }
   .main-nav ul{ flex-direction:column; align-items:stretch; gap:2px; }
   .main-nav a{ padding:14px 12px; border-radius:10px; }
   .has-mega .mega-menu{
     position:static; transform:none; opacity:1; visibility:visible; pointer-events:auto;
     display:none; width:auto; grid-template-columns:1fr; box-shadow:none; border:0; padding:0 0 0 12px; margin-top:4px;
   }
+  .has-mega:hover .mega-menu{ transform:none; }
   .has-mega.open .mega-menu{ display:grid; }
   .header-phone{ display:none; }
   .nav-toggle{ display:flex; }
@@ -628,8 +638,19 @@ button{font-family:inherit;}
   .contact-form{ padding:28px 22px; }
   .contact-info-card{ padding:30px 24px; }
   .series-grid{ grid-template-columns:1fr; }
+  .header-inner{ gap:12px; }
+  .logo{ gap:8px; }
+  .logo-mark img{ width:32px; height:32px; }
+  .logo-text{ font-size:1.05rem; }
+  .header-actions{ gap:6px; }
+  .header-actions .btn-sm{ padding:8px 12px; font-size:.78rem; }
   .series-intro{ padding:56px 0 48px; }
   .variants-section{ padding:48px 0 64px; }
   .variant-row{ grid-template-columns:1fr; text-align:left; }
   .variant-spec{ text-align:left; }
+}
+
+/* Very narrow phones: drop the header CTA (Επικοινωνία stays in the menu) */
+@media (max-width:440px){
+  .header-actions .btn{ display:none; }
 }
