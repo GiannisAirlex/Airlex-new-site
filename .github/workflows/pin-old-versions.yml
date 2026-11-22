@@ -1,0 +1,58 @@
+name: Pin previous Firebase Hosting versions to preview channels (live site untouched)
+
+on:
+  push:
+    branches: [claude/peaceful-ramanujan-3h5541]
+    paths: [.github/workflows/pin-old-versions.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  pin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: claude/peaceful-ramanujan-3h5541
+      - name: Pin versions
+        env:
+          SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_AIRLEX_SITE }}
+        run: |
+          printf '%s' "$SA" > "$RUNNER_TEMP/sa.json"
+          pip install --quiet google-auth requests
+          python3 - <<'PY'
+          import json, os
+          from google.oauth2 import service_account
+          import google.auth.transport.requests as tr
+          creds = service_account.Credentials.from_service_account_file(
+              os.path.join(os.environ['RUNNER_TEMP'], 'sa.json'),
+              scopes=['https://www.googleapis.com/auth/firebase', 'https://www.googleapis.com/auth/cloud-platform'])
+          s = tr.AuthorizedSession(creds)
+          API = 'https://firebasehosting.googleapis.com/v1beta1'; SITE = 'sites/airlex-site'
+          PINS = {
+            'before-claude-20261122': 'sites/airlex-site/versions/a9b646351f47ed2e',  # 2026-11-22 12:41 UTC, last before the GitHub deploys
+            'owner-20261117':         'sites/airlex-site/versions/395dc446ac8bc67a',  # 2026-11-17 15:41 UTC, last deploy from the owner's account
+          }
+          out = {}
+          for ch, ver in PINS.items():
+              c = s.post(f'{API}/{SITE}/channels', params={'channelId': ch}, json={'ttl': '2592000s', 'retainedReleaseCount': 1})
+              if c.status_code == 409:  # exists: extend expiry
+                  c = s.patch(f'{API}/{SITE}/channels/{ch}', params={'updateMask': 'ttl'}, json={'ttl': '2592000s'})
+              print(ch, 'channel', c.status_code)
+              r = s.post(f'{API}/{SITE}/channels/{ch}/releases', params={'versionName': ver})
+              print(ch, 'release', r.status_code, r.text[:200]); r.raise_for_status()
+              info = s.get(f'{API}/{SITE}/channels/{ch}').json()
+              out[ch] = {'version': ver, 'url': info.get('url'), 'expires': info.get('expireTime')}
+          print(json.dumps(out, indent=2))
+          json.dump(out, open('recovery/_meta/pinned-channels.json', 'w'), indent=2)
+          PY
+          rm -f "$RUNNER_TEMP/sa.json"
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git pull -q --rebase origin claude/peaceful-ramanujan-3h5541 || true
+          git add recovery/_meta/pinned-channels.json
+          git commit -m "Record pinned preview channels for previous versions" || echo "nothing to commit"
+          git push origin HEAD:claude/peaceful-ramanujan-3h5541
