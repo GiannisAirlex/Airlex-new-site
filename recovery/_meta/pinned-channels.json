@@ -1,0 +1,12 @@
+{
+  "before-claude-20261122": {
+    "version": "sites/airlex-site/versions/a9b646351f47ed2e",
+    "url": "https://airlex-site--before-claude-20261122-0eyiw2y8.web.app",
+    "expires": "2026-12-22T19:21:15.207517979Z"
+  },
+  "owner-20261117": {
+    "version": "sites/airlex-site/versions/395dc446ac8bc67a",
+    "url": "https://airlex-site--owner-20261117-8d873xat.web.app",
+    "expires": "2026-12-22T19:21:15.736636250Z"
+  }
+}
