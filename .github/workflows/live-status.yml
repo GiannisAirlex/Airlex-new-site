@@ -1,0 +1,35 @@
+name: Show what the live Firebase channel serves (read-only)
+
+on:
+  push:
+    branches: [claude/peaceful-ramanujan-3h5541]
+    paths: [.github/workflows/live-status.yml]
+
+permissions:
+  contents: read
+
+jobs:
+  status:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Latest live releases
+        env:
+          SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_AIRLEX_SITE }}
+        run: |
+          printf '%s' "$SA" > "$RUNNER_TEMP/sa.json"
+          pip install --quiet google-auth requests
+          python3 - <<'PY'
+          import os, json
+          from google.oauth2 import service_account
+          import google.auth.transport.requests as tr
+          creds = service_account.Credentials.from_service_account_file(os.path.join(os.environ['RUNNER_TEMP'], 'sa.json'),
+              scopes=['https://www.googleapis.com/auth/firebase.readonly'])
+          s = tr.AuthorizedSession(creds)
+          r = s.get('https://firebasehosting.googleapis.com/v1beta1/sites/airlex-site/channels/live/releases', params={'pageSize': 6}).json()
+          for x in r.get('releases', []):
+              v = x.get('version', {})
+              rw = (v.get('config') or {}).get('rewrites', [])
+              print('LIVE_RELEASE', x.get('releaseTime'), '|', x.get('type'), '|', (x.get('releaseUser') or {}).get('email'),
+                    '|', v.get('name', '').split('/')[-1], '| files', v.get('fileCount'), '| rewrites', json.dumps(rw)[:120], '|', x.get('message', ''))
+          PY
+          rm -f "$RUNNER_TEMP/sa.json"
