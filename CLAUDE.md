@@ -26,3 +26,5 @@ Static site (plain HTML/CSS/JS, no build step), Greek language.
 - `ClayStory` composition: claymorphic funny customer story (22s) with synthesized music/SFX.
   Regenerate audio with `python3 promo/scripts/make_clay_audio.py`, then
   `npx remotion render src/index.ts ClayStory out/airlex-clay-story.mp4` from `promo/`.
+- Cache busting: every page loads `assets/css/style.css?v=…` and `assets/js/main.js?v=…`.
+  When CSS/JS change, bump the `v=` value in all HTML files (e.g. to the short commit hash) so phones fetch the new files.
