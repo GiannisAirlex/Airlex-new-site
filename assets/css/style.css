@@ -205,7 +205,7 @@ button{font-family:inherit;}
   .hero-airflow{ opacity:.7; }
 }
 .hero-inner{
-  position:relative; display:grid; grid-template-columns:minmax(0,820px); gap:40px; align-items:center;
+  position:relative; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:center;
   padding:100px 24px 90px;
 }
 .hero .eyebrow{ color:var(--blue); }
@@ -583,6 +583,7 @@ button{font-family:inherit;}
    ============================================================ */
 @media (max-width:1080px){
   .hero-inner{ grid-template-columns:1fr; padding:70px 24px; }
+  .hero-visual{ display:none; } /* the category section right below already lists every product; avoid showing them twice */
   .why-inner{ grid-template-columns:1fr; }
   .infra-inner{ grid-template-columns:1fr; padding:44px 28px; }
   .infra-visual{ max-width:220px; margin:0 auto; }
