@@ -1,0 +1,14 @@
+{
+  "hosting": {
+    "site": "airlex-site",
+    "public": ".",
+    "cleanUrls": false,
+    "ignore": [
+      "firebase.json",
+      ".firebaserc",
+      "CLAUDE.md",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
