@@ -19,3 +19,7 @@ Static site (plain HTML/CSS/JS, no build step), Greek language.
 - Contact form does not send (`onsubmit="return false"` in contact.html).
 - Social icons in the footer are `href="#"`.
 - No product photos; news cards link back to news.html.
+
+## Promo video
+- `promo/` is a Remotion project for the Instagram Story video (1080×1920, 24s). It is excluded from the Firebase deploy.
+- `cd promo && npm install && npm run render` → `promo/out/airlex-instagram-story.mp4` (`npm run studio` for live preview).
