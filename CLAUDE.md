@@ -23,3 +23,6 @@ Static site (plain HTML/CSS/JS, no build step), Greek language.
 ## Promo video
 - `promo/` is a Remotion project for the Instagram Story video (1080×1920, 24s). It is excluded from the Firebase deploy.
 - `cd promo && npm install && npm run render` → `promo/out/airlex-instagram-story.mp4` (`npm run studio` for live preview).
+- `ClayStory` composition: claymorphic funny customer story (22s) with synthesized music/SFX.
+  Regenerate audio with `python3 promo/scripts/make_clay_audio.py`, then
+  `npx remotion render src/index.ts ClayStory out/airlex-clay-story.mp4` from `promo/`.

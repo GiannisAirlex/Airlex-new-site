@@ -583,7 +583,7 @@ button{font-family:inherit;}
    ============================================================ */
 @media (max-width:1080px){
   .hero-inner{ grid-template-columns:1fr; padding:70px 24px; }
-  .hero-visual{ order:-1; max-width:460px; }
+  .hero-visual{ display:none; } /* the category section right below already lists every product; avoid showing them twice */
   .why-inner{ grid-template-columns:1fr; }
   .infra-inner{ grid-template-columns:1fr; padding:44px 28px; }
   .infra-visual{ max-width:220px; margin:0 auto; }
