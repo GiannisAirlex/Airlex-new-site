@@ -1,0 +1,155 @@
+{
+  "name": "sites/airlex-site/channels/live/releases/1795351264458000",
+  "version": {
+    "name": "sites/airlex-site/versions/a9b646351f47ed2e",
+    "status": "FINALIZED",
+    "config": {
+      "headers": [
+        {
+          "headers": {
+            "x-next-cache-tags": "_N_T_/layout,_N_T_/_global-error/layout,_N_T_/_global-error/page,_N_T_/_global-error",
+            "x-nextjs-prerender": "1",
+            "x-nextjs-stale-time": "300"
+          },
+          "glob": "/_global-error"
+        },
+        {
+          "headers": {
+            "x-next-cache-tags": "_N_T_/layout,_N_T_/_not-found/layout,_N_T_/_not-found/page,_N_T_/_not-found",
+            "x-nextjs-prerender": "1",
+            "x-nextjs-stale-time": "300"
+          },
+          "glob": "/_not-found"
+        },
+        {
+          "headers": {
+            "x-nextjs-prerender": "1",
+            "x-nextjs-stale-time": "300",
+            "x-next-cache-tags": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/page,_N_T_/admin"
+          },
+          "glob": "/admin"
+        },
+        {
+          "headers": {
+            "cache-control": "public, max-age=0, must-revalidate",
+            "content-type": "image/png",
+            "x-next-cache-tags": "_N_T_/layout,_N_T_/apple-icon.png/layout,_N_T_/apple-icon.png/route,_N_T_/apple-icon.png"
+          },
+          "glob": "/apple-icon.png"
+        },
+        {
+          "headers": {
+            "x-nextjs-stale-time": "300",
+            "x-next-cache-tags": "_N_T_/layout,_N_T_/epikoinonia/layout,_N_T_/epikoinonia/page,_N_T_/epikoinonia",
+            "x-nextjs-prerender": "1"
+          },
+          "glob": "/epikoinonia"
+        },
+        {
+          "headers": {
+            "cache-control": "public, max-age=0, must-revalidate",
+            "content-type": "image/x-icon",
+            "x-next-cache-tags": "_N_T_/layout,_N_T_/favicon.ico/layout,_N_T_/favicon.ico/route,_N_T_/favicon.ico"
+          },
+          "glob": "/favicon.ico"
+        },
+        {
+          "headers": {
+            "x-nextjs-prerender": "1",
+            "x-nextjs-stale-time": "300",
+            "x-next-cache-tags": "_N_T_/layout,_N_T_/i-etaireia/layout,_N_T_/i-etaireia/page,_N_T_/i-etaireia"
+          },
+          "glob": "/i-etaireia"
+        },
+        {
+          "headers": {
+            "cache-control": "public, max-age=0, must-revalidate",
+            "content-type": "image/png",
+            "x-next-cache-tags": "_N_T_/layout,_N_T_/icon.png/layout,_N_T_/icon.png/route,_N_T_/icon.png"
+          },
+          "glob": "/icon.png"
+        },
+        {
+          "headers": {
+            "x-nextjs-stale-time": "300",
+            "x-next-cache-tags": "_N_T_/layout,_N_T_/markes/layout,_N_T_/markes/page,_N_T_/markes",
+            "x-nextjs-prerender": "1"
+          },
+          "glob": "/markes"
+        },
+        {
+          "headers": {
+            "x-next-cache-tags": "_N_T_/layout,_N_T_/nea/layout,_N_T_/nea/page,_N_T_/nea",
+            "x-nextjs-prerender": "1",
+            "x-nextjs-stale-time": "300"
+          },
+          "glob": "/nea"
+        },
+        {
+          "headers": {
+            "x-next-cache-tags": "_N_T_/layout,_N_T_/opengraph-image.jpg/layout,_N_T_/opengraph-image.jpg/route,_N_T_/opengraph-image.jpg",
+            "cache-control": "public, max-age=0, must-revalidate",
+            "content-type": "image/jpeg"
+          },
+          "glob": "/opengraph-image.jpg"
+        },
+        {
+          "headers": {
+            "x-next-cache-tags": "_N_T_/layout,_N_T_/privacy-policy/layout,_N_T_/privacy-policy/page,_N_T_/privacy-policy",
+            "x-nextjs-prerender": "1",
+            "x-nextjs-stale-time": "300"
+          },
+          "glob": "/privacy-policy"
+        },
+        {
+          "headers": {
+            "x-nextjs-stale-time": "300",
+            "x-next-cache-tags": "_N_T_/layout,_N_T_/proionta/layout,_N_T_/proionta/page,_N_T_/proionta",
+            "x-nextjs-prerender": "1"
+          },
+          "glob": "/proionta"
+        },
+        {
+          "headers": {
+            "Set-Cookie": "__FIREBASE_DEFAULTS__=eyJjb25maWciOnsicHJvamVjdElkIjoiYWlybGV4LXNpdGUiLCJhcHBJZCI6IjE6NTQyOTU5NTEyNTcwOndlYjo5YTA1ZjdlYmI4MjBlZTAxYjU5MjQzIiwic3RvcmFnZUJ1Y2tldCI6ImFpcmxleC1zaXRlLmZpcmViYXNlc3RvcmFnZS5hcHAiLCJhcGlLZXkiOiJBSXphU3lBcGVQOTlmYjE5UThUR1NTVXVqWkwxNGF6Z2dPT0dWdEUiLCJhdXRoRG9tYWluIjoiYWlybGV4LXNpdGUuZmlyZWJhc2VhcHAuY29tIiwibWVzc2FnaW5nU2VuZGVySWQiOiI1NDI5NTk1MTI1NzAiLCJtZWFzdXJlbWVudElkIjoiRy1TVDVFWURQRFlYIiwicHJvamVjdE51bWJlciI6IjU0Mjk1OTUxMjU3MCIsInZlcnNpb24iOiIyIn0sIl9hdXRoVG9rZW5TeW5jVVJMIjoiL19fc2Vzc2lvbiJ9; SameSite=Strict; Expires=2028-10-16T23:18:07.825Z; Path=/;"
+          },
+          "glob": "**/*.[jt]s"
+        }
+      ],
+      "rewrites": [
+        {
+          "glob": "**",
+          "run": {
+            "serviceId": "ssrairlexsite",
+            "region": "europe-west1",
+            "tag": "fh-a9b646351f47ed2e"
+          }
+        }
+      ],
+      "cleanUrls": true,
+      "trailingSlashBehavior": "REMOVE"
+    },
+    "labels": {
+      "deployment-tool": "cli-firebase",
+      "firebase-web-framework": "next_ssr"
+    },
+    "createTime": "2026-11-22T12:38:25.933001Z",
+    "createUser": {
+      "email": "firebase-adminsdk-fbsvc@airlex-site.iam.gserviceaccount.com",
+      "imageUrl": "https://lh3.googleusercontent.com/a/ACg8ocKOneyuh77Mb55ax0iMitMwqYcOe3frgbWcitINpRgu1dZbBYA=mo"
+    },
+    "finalizeTime": "2026-11-22T12:41:04.665770Z",
+    "finalizeUser": {
+      "email": "firebase-adminsdk-fbsvc@airlex-site.iam.gserviceaccount.com",
+      "imageUrl": "https://lh3.googleusercontent.com/a/ACg8ocKOneyuh77Mb55ax0iMitMwqYcOe3frgbWcitINpRgu1dZbBYA=mo"
+    },
+    "fileCount": "50",
+    "versionBytes": "2083501"
+  },
+  "type": "DEPLOY",
+  "releaseTime": "2026-11-22T12:41:04.458Z",
+  "releaseUser": {
+    "email": "firebase-adminsdk-fbsvc@airlex-site.iam.gserviceaccount.com",
+    "imageUrl": "https://lh3.googleusercontent.com/a/ACg8ocKOneyuh77Mb55ax0iMitMwqYcOe3frgbWcitINpRgu1dZbBYA=mo"
+  }
+}
