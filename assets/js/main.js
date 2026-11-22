@@ -26,7 +26,7 @@
   if (nav) {
     nav.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
-        if (window.innerWidth <= 860 && link.closest('.has-mega') === null) {
+        if (window.innerWidth <= 860 && !(hasMega && link.parentElement === hasMega)) {
           nav.classList.remove('open');
           toggle.classList.remove('open');
           toggle.setAttribute('aria-expanded', 'false');
